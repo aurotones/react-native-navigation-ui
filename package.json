@@ -1,0 +1,17 @@
+{
+  "name": "react-native-navigation-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Uuganbayar (replecta@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "react-native": "^0.58.6",
+    "react-native-navigation": "^2.13.1",
+      "prop-types": "latest",
+      "eventemitter3": "latest"
+  }
+}
