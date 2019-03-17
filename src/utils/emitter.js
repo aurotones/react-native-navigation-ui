@@ -1,11 +1,13 @@
 import EventEmitter from "eventemitter3";
 
-export default class emitter {
+class emitter {
     static eventEmitter = new EventEmitter();
-    static addListener(){
-        return this.eventEmitter.addListener;
+    static addListener(...args){
+        return this.eventEmitter.addListener(...args);
     }
-    static emit(){
-        return this.eventEmitter.emit;
+    static emit(...args){
+        return this.eventEmitter.emit(...args);
     }
 }
+
+module.exports = emitter;

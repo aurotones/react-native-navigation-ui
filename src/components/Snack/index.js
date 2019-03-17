@@ -23,14 +23,16 @@ class Snack extends React.Component {
     constructor(props){
         super(props);
         let rightButtonText = "Ok";
-        if (props.rightButton !== null){
-            if (typeof props.rightButton.label === "string"){
-                rightButtonText = props.rightButton.label;
+        if (typeof props === "object"){
+            if (props.rightButton !== null){
+                if (typeof props.rightButton.label === "string"){
+                    rightButtonText = props.rightButton.label;
+                }
             }
-        }
-        this.state = {
-            opacity: new Animated.Value(0),
-            rightButtonText: rightButtonText
+            this.state = {
+                opacity: new Animated.Value(0),
+                rightButtonText: rightButtonText
+            }
         }
     }
     componentDidMount(){
@@ -80,7 +82,7 @@ class Snack extends React.Component {
                         opacity: opacity
                     }]}
                 >
-                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                    <View style={{ flex: 1, justifyContent: "center" }}>
                         <Text style={style().snack.text}>
                             { this.props.text }
                         </Text>
@@ -151,4 +153,4 @@ function style(){
     }
 }
 
-export default Snack;
+module.exports = Snack;

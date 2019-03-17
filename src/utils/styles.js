@@ -1,9 +1,12 @@
-export default class styles {
-    static primaryColor = "";
-    static getPrimaryColor(){
-        return this.primaryColor;
-    }
-    static setPrimaryColor(color){
-        this.primaryColor = color;
+let properties = {
+    primaryColor: ""
+};
+
+module.exports = {
+    getPrimaryColor: () => {
+        return properties.primaryColor;
+    },
+    setPrimaryColor: (color) => {
+        properties.primaryColor = color;
     }
 }

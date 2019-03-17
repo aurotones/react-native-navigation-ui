@@ -7,7 +7,7 @@ import NavBar from "react-native-navigation-bar-color";
 import styles from "../../utils/styles";
 import Touchable from "../../components/Touchable";
 import isIOS from "../../utils/isIOS";
-import Emitter from "../../utils/emitter";
+import emitter from "../../utils/emitter";
 
 const shadow = "#4c4c4c";
 const scrX = Dimensions.get("window").width;
@@ -29,7 +29,7 @@ const defaultProps = {
     useLayoutAnimation: false,
 };
 
-export default class Dialog extends React.Component {
+class Dialog extends React.Component {
     static get options(){
         return {
             statusBar: {
@@ -61,22 +61,25 @@ export default class Dialog extends React.Component {
     static defaultProps = defaultProps;
     constructor(props){
         super(props);
-        if (props.eventId){
-            Emitter.addListener(props.eventId,this.events.bind(this));
+        if (typeof props === "object"){
+            console.log(props);
+            if (props.eventId){
+                emitter.addListener(props.eventId,this.events.bind(this));
+            }
+            this.state = {
+                eventId: props.eventId,
+                icon: props.icon,
+                title: props.title,
+                description: props.description,
+                textAlign: props.textAlign,
+                backDrop: props.backDrop,
+                buttonLabel: props.buttonLabel,
+                leftButton: props.leftButton,
+                rightButtons: props.rightButtons,
+                pending: props.pending,
+                pendingLabel: props.pendingLabel,
+            };
         }
-        this.state = {
-            eventId: props.eventId,
-            icon: props.icon,
-            title: props.title,
-            description: props.description,
-            textAlign: props.textAlign,
-            backDrop: props.backDrop,
-            buttonLabel: props.buttonLabel,
-            leftButton: props.leftButton,
-            rightButtons: props.rightButtons,
-            pending: props.pending,
-            pendingLabel: props.pendingLabel,
-        };
     }
     componentWillMount(){
         if (!isIOS){
@@ -337,3 +340,5 @@ Dialog.propType = {
     disableWarnings: Proptypes.bool,
     useLayoutAnimation: Proptypes.bool,
 };
+
+module.exports = Dialog;
