@@ -11,7 +11,7 @@
   "dependencies": {
     "react-native": "^0.58.6",
     "react-native-navigation": "^2.13.1",
-      "prop-types": "latest",
-      "eventemitter3": "latest"
+    "prop-types": "latest",
+    "eventemitter3": "latest"
   }
 }
