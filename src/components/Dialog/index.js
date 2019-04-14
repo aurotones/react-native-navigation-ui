@@ -1,9 +1,16 @@
 import React from "react";
 import Proptypes from "prop-types";
-import { LayoutAnimation, View, Text, Dimensions, TouchableWithoutFeedback, ActivityIndicator } from "react-native";
+import {
+    LayoutAnimation,
+    View,
+    Text,
+    Dimensions,
+    TouchableWithoutFeedback,
+    ActivityIndicator,
+    Animated
+} from "react-native";
 import { Navigation } from "react-native-navigation";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import NavBar from "react-native-navigation-bar-color";
 import styles from "../../utils/styles";
 import Touchable from "../../components/Touchable";
 import isIOS from "../../utils/isIOS";
@@ -14,6 +21,7 @@ const scrX = Dimensions.get("window").width;
 const scrY = Dimensions.get("window").height;
 
 const defaultProps = {
+    fadeTime: 200,
     eventId: null,
     icon: null,
     title: null,
@@ -34,6 +42,9 @@ class Dialog extends React.Component {
         return {
             statusBar: {
                 backgroundColor: shadow
+            },
+            overlay: {
+                interceptTouchOutside: false
             },
             layout: {
                 backgroundColor: "transparent"
@@ -67,6 +78,7 @@ class Dialog extends React.Component {
                 emitter.addListener(props.eventId,this.events.bind(this));
             }
             this.state = {
+                opacity: new Animated.Value(0),
                 eventId: props.eventId,
                 icon: props.icon,
                 title: props.title,
@@ -81,10 +93,14 @@ class Dialog extends React.Component {
             };
         }
     }
-    componentWillMount(){
-        if (!isIOS){
-            NavBar(shadow,false);
-        }
+    componentDidMount(){
+        const { fadeTime } = this.props;
+        Animated.timing(
+            this.state.opacity,{
+                toValue: 1,
+                duration: fadeTime,
+            }
+        ).start();
     }
     events(args){
         console.log(args);
@@ -125,11 +141,21 @@ class Dialog extends React.Component {
         }
     }
     close(){
-        const { componentId } = this.props;
-        Navigation.dismissModal(componentId).then().catch();
-        if (!isIOS){
-            NavBar("#ffffff",true);
-        }
+        const { componentId, fadeTime } = this.props;
+        Animated.timing(
+            this.state.opacity,{
+                toValue: 0,
+                duration: fadeTime,
+            }
+        ).start(() => {
+            setTimeout(() => {
+                Navigation.dismissOverlay(this.props.componentId)
+                .then()
+                .catch((err) => {
+
+                });
+            },100);
+        });
     }
     onBackDrop(){
         const { backDrop, pending } = this.state;
@@ -144,9 +170,15 @@ class Dialog extends React.Component {
         }
     }
     render(){
-        const { icon, textAlign, leftButton, rightButtons } = this.state;
+        const { opacity, icon, textAlign, leftButton, rightButtons } = this.state;
         return (
-            <View style={this.style().cont}>
+            <Animated.View
+                style={[
+                    this.style().cont,{
+                        opacity: opacity
+                    }
+                ]}
+            >
                 <TouchableWithoutFeedback onPress={this.onBackDrop.bind(this)}>
                     <View style={this.style().backDrop}/>
                 </TouchableWithoutFeedback>
@@ -250,7 +282,7 @@ class Dialog extends React.Component {
                         </View>
                     )
                 }
-            </View>
+            </Animated.View>
         )
     }
     button(props){
