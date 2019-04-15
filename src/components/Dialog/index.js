@@ -10,10 +10,9 @@ import {
     Animated
 } from "react-native";
 import { Navigation } from "react-native-navigation";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import FallBackIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "../../utils/styles";
 import Touchable from "../../components/Touchable";
-import isIOS from "../../utils/isIOS";
 import emitter from "../../utils/emitter";
 
 const shadow = "#4c4c4c";
@@ -23,7 +22,8 @@ const scrY = Dimensions.get("window").height;
 const defaultProps = {
     fadeTime: 200,
     eventId: null,
-    icon: null,
+    iconComponent: FallBackIcon,
+    iconProps: null,
     title: null,
     description: null,
     textAlign: "left",
@@ -80,7 +80,7 @@ class Dialog extends React.Component {
             this.state = {
                 opacity: new Animated.Value(0),
                 eventId: props.eventId,
-                icon: props.icon,
+                iconProps: props.iconProps,
                 title: props.title,
                 description: props.description,
                 textAlign: props.textAlign,
@@ -103,7 +103,6 @@ class Dialog extends React.Component {
         ).start();
     }
     events(args){
-        console.log(args);
         switch (args.method){
             case "update":
                 this.update(args);
@@ -170,7 +169,8 @@ class Dialog extends React.Component {
         }
     }
     render(){
-        const { opacity, icon, textAlign, leftButton, rightButtons } = this.state;
+        const { opacity, iconProps, textAlign, leftButton, rightButtons } = this.state;
+        const Icon = this.props.iconComponent;
         return (
             <Animated.View
                 style={[
@@ -216,11 +216,11 @@ class Dialog extends React.Component {
                         <View style={this.style().card}>
                             <View style={this.style().sub}>
                                 {
-                                    icon !== null ? (
+                                    iconProps !== null ? (
                                         <View style={this.style().iconContainer}>
                                             <Icon
                                                 size={96}
-                                                { ...icon }
+                                                { ...iconProps }
                                             />
                                         </View>
                                     ) : null
@@ -320,7 +320,7 @@ class Dialog extends React.Component {
                 backgroundColor: "#fff",
                 borderRadius: 10,
             },
-            iconContainer: {
+            iconPropsContainer: {
                 marginBottom: 20,
                 justifyContent: "center",
                 alignItems: "center",
@@ -359,7 +359,8 @@ class Dialog extends React.Component {
 
 Dialog.propType = {
     eventId: Proptypes.string,
-    icon: Proptypes.object,
+    iconComponent: Proptypes.element,
+    iconProps: Proptypes.object,
     title: Proptypes.string.required,
     description: Proptypes.string,
     textAlign: Proptypes.string,
