@@ -1,4 +1,5 @@
 import React from "react";
+import Proptypes from "prop-types";
 import { Animated, TouchableWithoutFeedback, View, Text, PanResponder } from "react-native";
 import { Navigation } from "react-native-navigation";
 import FallBackIcon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -6,6 +7,8 @@ import Touchable from "../Touchable";
 import easingValue from "../../utils/easingValue";
 
 const defaultProps = {
+    sheets: [],
+    onPress: () => {},
     fadeTime: 200,
     backDrop: true
 };
@@ -50,9 +53,10 @@ class BottomSheets extends React.Component {
                 }
             }
         };
+        // noinspection JSUnusedGlobalSymbols, JSUnusedLocalSymbols
         this.panResponder = PanResponder.create({
             onMoveShouldSetPanResponder: (evt, gestureState) => {
-                const { dx, dy } = gestureState
+                const { dx, dy } = gestureState;
                 return dx > 2 || dx < -2 || dy > 2 || dy < -2
             },
             onStartShouldSetPanResponderCapture: (evt, gestureState) => false,
@@ -61,7 +65,7 @@ class BottomSheets extends React.Component {
                 let draggedHeight = gestureState.moveY - gestureState.y0;
                 let value;
                 if (draggedHeight < 1){
-                    let spring = 1.5 * (buttonHeight - draggedHeight) / buttonHeight;
+                    let spring = 2.2 * (buttonHeight - draggedHeight) / buttonHeight;
                     value = (buttonHeight - (draggedHeight / spring)) / buttonHeight;
                 } else {
                     value = (buttonHeight - draggedHeight) / buttonHeight;
@@ -80,8 +84,6 @@ class BottomSheets extends React.Component {
             onPanResponderTerminate: onPanResponderRelease,
             onPanResponderTerminationRequest: (evt, gestureState) => true,
             onShouldBlockNativeResponder: (evt, gestureState) => {
-                // Returns whether this component should block native components from becoming the JS
-                // responder. Returns true by default. Is currently only supported on android.
                 return false;
             },
         });
@@ -142,7 +144,7 @@ class BottomSheets extends React.Component {
                     style={this.style().backdrop}
                     {...this.panResponder.panHandlers}
                 >
-                    <TouchableWithoutFeedback onPress={this.close.bind(this)}>
+                    <TouchableWithoutFeedback onPress={this.onBackDrop.bind(this)}>
                         <View style={{flex: 1}}/>
                     </TouchableWithoutFeedback>
                 </Animated.View>
@@ -155,6 +157,7 @@ class BottomSheets extends React.Component {
                         sheets.map((button,i) => {
                             let Icon = FallBackIcon;
                             if (typeof button.iconComponent === "object" && button.iconComponent !== null){
+                                // noinspection JSUnusedAssignment
                                 Icon = button.iconComponent;
                             }
                             return (
@@ -248,5 +251,12 @@ class BottomSheets extends React.Component {
         }
     }
 }
+
+BottomSheets.propType = {
+    sheets: Proptypes.array.required,
+    onPress: Proptypes.func,
+    fadeTime: Proptypes.number,
+    backdrop: Proptypes.bool
+};
 
 module.exports = BottomSheets;
