@@ -56,8 +56,8 @@ class BottomSheets extends React.Component {
         // noinspection JSUnusedGlobalSymbols, JSUnusedLocalSymbols
         this.panResponder = PanResponder.create({
             onMoveShouldSetPanResponder: (evt, gestureState) => {
-                const { dx, dy } = gestureState;
-                return dx > 2 || dx < -2 || dy > 2 || dy < -2
+                const { dy } = gestureState;
+                return dy > 3 || dy < -3
             },
             onStartShouldSetPanResponderCapture: (evt, gestureState) => false,
             onMoveShouldSetPanResponderCapture: (evt, gestureState) => false,
