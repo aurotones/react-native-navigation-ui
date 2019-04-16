@@ -244,7 +244,7 @@ class BottomSheets extends React.Component {
                         justifyContent: "center",
                     },
                     self: {
-
+                        color: "#000"
                     }
                 }
             }
