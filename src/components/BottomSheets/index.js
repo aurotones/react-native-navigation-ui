@@ -13,9 +13,6 @@ const defaultProps = {
 class BottomSheets extends React.Component {
     static get options(){
         return {
-            overlay: {
-                interceptTouchOutside: false
-            },
             layout: {
                 backgroundColor: "transparent"
             },
@@ -37,10 +34,10 @@ class BottomSheets extends React.Component {
         let buttonHeight = this.props.sheets.length * 48;
         const onPanResponderRelease = (e,gestureState) => {
             let draggedHeight = gestureState.moveY - gestureState.y0;
-            if (draggedHeight >= buttonHeight){
+            if (draggedHeight >= buttonHeight || (draggedHeight / buttonHeight) >= 0.5){
                 this.close();
             } else {
-                if (velocity >= 15){
+                if (velocity >= 10){
                     this.close();
                 } else {
                     Animated.timing(
@@ -54,13 +51,17 @@ class BottomSheets extends React.Component {
             }
         };
         this.panResponder = PanResponder.create({
-            onMoveShouldSetPanResponder: () => true,
-            onMoveShouldSetPanResponderCapture: () => true,
+            onMoveShouldSetPanResponder: (evt, gestureState) => {
+                const { dx, dy } = gestureState
+                return dx > 2 || dx < -2 || dy > 2 || dy < -2
+            },
+            onStartShouldSetPanResponderCapture: (evt, gestureState) => false,
+            onMoveShouldSetPanResponderCapture: (evt, gestureState) => false,
             onPanResponderMove: (e,gestureState) => {
                 let draggedHeight = gestureState.moveY - gestureState.y0;
                 let value;
                 if (draggedHeight < 1){
-                    let spring = (buttonHeight - draggedHeight) / buttonHeight;
+                    let spring = 1.5 * (buttonHeight - draggedHeight) / buttonHeight;
                     value = (buttonHeight - (draggedHeight / spring)) / buttonHeight;
                 } else {
                     value = (buttonHeight - draggedHeight) / buttonHeight;
@@ -76,7 +77,13 @@ class BottomSheets extends React.Component {
                 previousHeight = draggedHeight;
             },
             onPanResponderRelease: onPanResponderRelease,
-            onPanResponderTerminate: onPanResponderRelease
+            onPanResponderTerminate: onPanResponderRelease,
+            onPanResponderTerminationRequest: (evt, gestureState) => true,
+            onShouldBlockNativeResponder: (evt, gestureState) => {
+                // Returns whether this component should block native components from becoming the JS
+                // responder. Returns true by default. Is currently only supported on android.
+                return false;
+            },
         });
     }
     componentDidMount(){
@@ -142,6 +149,7 @@ class BottomSheets extends React.Component {
                 <Animated.View
                     style={this.style().sheet.cont}
                     {...this.panResponder.panHandlers}
+                    pointerEvents="auto"
                 >
                     {
                         sheets.map((button,i) => {
@@ -205,8 +213,9 @@ class BottomSheets extends React.Component {
                     bottom: 0,
                     height: height,
                     backgroundColor: "#fff",
-                    borderTopLeftRadius: 15,
-                    borderTopRightRadius: 15,
+                    borderTopLeftRadius: 18,
+                    borderTopRightRadius: 18,
+                    overflow: "hidden"
                 },
                 button: {
                     flexDirection: "row",
