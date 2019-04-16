@@ -14,8 +14,8 @@ import FallBackIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "../../utils/styles";
 import Touchable from "../../components/Touchable";
 import emitter from "../../utils/emitter";
+import easingValue from "../../utils/easingValue";
 
-const shadow = "#4c4c4c";
 const scrX = Dimensions.get("window").width;
 const scrY = Dimensions.get("window").height;
 
@@ -40,9 +40,6 @@ const defaultProps = {
 class Dialog extends React.Component {
     static get options(){
         return {
-            statusBar: {
-                backgroundColor: shadow
-            },
             overlay: {
                 interceptTouchOutside: false
             },
@@ -51,22 +48,6 @@ class Dialog extends React.Component {
             },
             screenBackgroundColor: "transparent",
             modalPresentationStyle: "overCurrentContext",
-            animations: {
-                showModal: {
-                    enabled: true,
-                    alpha: {
-                        from: 0,
-                        to: 1,
-                    }
-                },
-                dismissModal: {
-                    enabled: true,
-                    alpha: {
-                        from: 1,
-                        to: 0,
-                    }
-                }
-            }
         }
     }
     static defaultProps = defaultProps;
@@ -99,6 +80,7 @@ class Dialog extends React.Component {
             this.state.opacity,{
                 toValue: 1,
                 duration: fadeTime,
+                easing: easingValue.accelerate
             }
         ).start();
     }
@@ -145,10 +127,11 @@ class Dialog extends React.Component {
             this.state.opacity,{
                 toValue: 0,
                 duration: fadeTime,
+                easing: easingValue.decelerate
             }
         ).start(() => {
             setTimeout(() => {
-                Navigation.dismissOverlay(this.props.componentId)
+                Navigation.dismissOverlay(componentId)
                 .then()
                 .catch((err) => {
 

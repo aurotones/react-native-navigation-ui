@@ -3,6 +3,7 @@ import { Animated, View, Text } from "react-native";
 import { Navigation } from "react-native-navigation";
 import Touchable from "../../components/Touchable";
 import styles from "../../utils/styles";
+import easingValue from "../../utils/easingValue";
 
 class Snack extends React.Component {
     static defaultProps = {
@@ -41,6 +42,7 @@ class Snack extends React.Component {
             this.state.opacity,{
                 toValue: 1,
                 duration: 100,
+                easing: easingValue.accelerate
             }
         ).start(() => {
             setTimeout(() => {
@@ -53,6 +55,7 @@ class Snack extends React.Component {
             this.state.opacity,{
                 toValue: 0,
                 duration: 200,
+                easing: easingValue.decelerate
             }
         ).start(() => {
             setTimeout(() => {
