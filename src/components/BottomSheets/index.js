@@ -57,7 +57,7 @@ class BottomSheets extends React.Component {
         this.panResponder = PanResponder.create({
             onMoveShouldSetPanResponder: (evt, gestureState) => {
                 const { dy } = gestureState;
-                return dy > 3 || dy < -3
+                return dy > 4 || dy < -4
             },
             onStartShouldSetPanResponderCapture: (evt, gestureState) => false,
             onMoveShouldSetPanResponderCapture: (evt, gestureState) => false,
@@ -244,7 +244,7 @@ class BottomSheets extends React.Component {
                         justifyContent: "center",
                     },
                     self: {
-                        color: "#000"
+
                     }
                 }
             }

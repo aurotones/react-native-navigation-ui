@@ -26,7 +26,9 @@ const defaultProps = {
     iconProps: null,
     title: null,
     description: null,
+    iconAlign: "left",
     textAlign: "left",
+    iconInline: true,
     backDrop: true,
     buttonLabel: "Ok",
     leftButton: null,
@@ -65,6 +67,7 @@ class Dialog extends React.Component {
                 title: props.title,
                 description: props.description,
                 textAlign: props.textAlign,
+                iconInline: props.iconInline,
                 backDrop: props.backDrop,
                 buttonLabel: props.buttonLabel,
                 leftButton: props.leftButton,
@@ -208,7 +211,7 @@ class Dialog extends React.Component {
                                         </View>
                                     ) : null
                                 }
-                                <View>
+                                <View style={{ flexShrink: 2 }}>
                                     {
                                         typeof this.state.title === "string" ? (
                                             <Text
@@ -278,6 +281,7 @@ class Dialog extends React.Component {
         )
     }
     style(){
+        const { iconInline, pending } = this.state;
         return {
             cont: {
                 position: "relative",
@@ -292,21 +296,22 @@ class Dialog extends React.Component {
                 height: scrY,
             },
             sub: {
+                flexDirection: iconInline ? "row" : "column",
                 padding: 20,
             },
             card: {
-                paddingTop: this.state.pending ? 23 : 0,
-                paddingBottom: this.state.pending ? 20 : 0,
-                paddingHorizontal: this.state.pending ? 24 : 0,
+                paddingTop: pending ? 23 : 0,
+                paddingBottom: pending ? 20 : 0,
+                paddingHorizontal: pending ? 24 : 0,
                 width: scrX - 60,
                 maxWidth: 340,
                 backgroundColor: "#fff",
                 borderRadius: 10,
             },
-            iconPropsContainer: {
-                marginBottom: 20,
+            iconContainer: {
+                marginBottom: 15,
                 justifyContent: "center",
-                alignItems: "center",
+                alignItems: this.state.iconAlign,
             },
             title: {
                 fontSize: 16,
