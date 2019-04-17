@@ -4,6 +4,7 @@ import { Navigation } from "react-native-navigation";
 import Touchable from "../../components/Touchable";
 import styles from "../../utils/styles";
 import easingValue from "../../utils/easingValue";
+import isIPhoneX from "../../utils/isIPhoneX";
 
 class Snack extends React.Component {
     static defaultProps = {
@@ -123,7 +124,9 @@ function style(){
         snack: {
             cont: {
                 flexDirection: "row",
-                margin: 5,
+                marginHorizontal: 5,
+                marginTop: 5,
+                marginBottom: isIPhoneX ? 21 : 5,
                 padding: 10,
                 minHeight: 46,
                 backgroundColor: "#333",

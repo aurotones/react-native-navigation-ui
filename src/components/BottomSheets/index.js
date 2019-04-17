@@ -5,13 +5,15 @@ import { Navigation } from "react-native-navigation";
 import FallBackIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Touchable from "../Touchable";
 import easingValue from "../../utils/easingValue";
+import isIPhoneX from "../../utils/isIPhoneX";
 
 const defaultProps = {
     title: null,
     sheets: [],
     onPress: () => {},
     fadeTime: 200,
-    backDrop: true
+    backDrop: true,
+    borderRadius: 18,
 };
 
 class BottomSheets extends React.Component {
@@ -36,6 +38,9 @@ class BottomSheets extends React.Component {
         let previousHeight = 0;
         let velocity = 0;
         let buttonHeight = (this.props.sheets.length * 43) + 58;
+        if (isIPhoneX){
+            buttonHeight += 10;
+        }
         const onPanResponderRelease = (e,gestureState) => {
             let draggedHeight = gestureState.moveY - gestureState.y0;
             if ((draggedHeight / buttonHeight) >= 0.5){
@@ -201,9 +206,12 @@ class BottomSheets extends React.Component {
         )
     }
     style(){
-        const { sheets } = this.props;
+        const { sheets, borderRadius } = this.props;
         const { opacity } = this.state;
         let buttonHeight = (sheets.length * 43) + 58;
+        if (isIPhoneX){
+            buttonHeight += 20;
+        }
         let height = this.state.height.interpolate({
             inputRange: [0, 1],
             outputRange: [0, buttonHeight]
@@ -238,8 +246,8 @@ class BottomSheets extends React.Component {
                     bottom: 0,
                     height: height,
                     backgroundColor: "#fff",
-                    borderTopLeftRadius: 18,
-                    borderTopRightRadius: 18,
+                    borderTopLeftRadius: borderRadius,
+                    borderTopRightRadius: borderRadius,
                     overflow: "hidden"
                 },
                 button: {
@@ -250,7 +258,7 @@ class BottomSheets extends React.Component {
                     height: 40,
                     alignItems: "center",
                     borderRadius: 4,
-                    overflow: "hidden"
+                    overflow: "hidden",
                 },
                 icon: {
                     cont: {
