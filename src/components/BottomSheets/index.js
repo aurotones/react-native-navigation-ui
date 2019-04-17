@@ -7,6 +7,7 @@ import Touchable from "../Touchable";
 import easingValue from "../../utils/easingValue";
 
 const defaultProps = {
+    title: null,
     sheets: [],
     onPress: () => {},
     fadeTime: 200,
@@ -34,7 +35,7 @@ class BottomSheets extends React.Component {
         };
         let previousHeight = 0;
         let velocity = 0;
-        let buttonHeight = this.props.sheets.length * 48;
+        let buttonHeight = (this.props.sheets.length * 43) + 58;
         const onPanResponderRelease = (e,gestureState) => {
             let draggedHeight = gestureState.moveY - gestureState.y0;
             if (draggedHeight >= buttonHeight || (draggedHeight / buttonHeight) >= 0.5){
@@ -137,7 +138,7 @@ class BottomSheets extends React.Component {
         });
     }
     render(){
-        const { sheets, onPress } = this.props;
+        const { title, sheets, onPress } = this.props;
         return (
             <View style={this.style().cont}>
                 <Animated.View
@@ -153,6 +154,15 @@ class BottomSheets extends React.Component {
                     {...this.panResponder.panHandlers}
                     pointerEvents="auto"
                 >
+                    {
+                        title !== null ? (
+                            <View style={this.style().title.cont}>
+                                <Text style={this.style().title.self}>
+                                    { title }
+                                </Text>
+                            </View>
+                        ) : null
+                    }
                     {
                         sheets.map((button,i) => {
                             let Icon = FallBackIcon;
@@ -193,7 +203,7 @@ class BottomSheets extends React.Component {
     style(){
         const { sheets } = this.props;
         const { opacity } = this.state;
-        let buttonHeight = sheets.length * 48;
+        let buttonHeight = (sheets.length * 43) + 58;
         let height = this.state.height.interpolate({
             inputRange: [0, 1],
             outputRange: [0, buttonHeight]
@@ -208,6 +218,18 @@ class BottomSheets extends React.Component {
                 backgroundColor: "rgba(0,0,0,0.7)",
                 opacity: opacity
             },
+            title: {
+                cont: {
+                    paddingTop: 10,
+                    paddingHorizontal: 24,
+                    height: 48,
+                    justifyContent: "center",
+                },
+                self: {
+                    fontSize: 13,
+                    color: "#888",
+                }
+            },
             sheet: {
                 cont: {
                     position: "absolute",
@@ -221,14 +243,18 @@ class BottomSheets extends React.Component {
                     overflow: "hidden"
                 },
                 button: {
+                    marginHorizontal: 5,
+                    marginBottom: 5,
                     flexDirection: "row",
                     paddingHorizontal: 10,
-                    height: 48,
-                    alignItems: "center"
+                    height: 40,
+                    alignItems: "center",
+                    borderRadius: 4,
+                    overflow: "hidden"
                 },
                 icon: {
                     cont: {
-                        paddingHorizontal: 10,
+                        paddingHorizontal: 5,
                         height: 38,
                         justifyContent: "center",
                         alignItems: "center"
@@ -240,7 +266,7 @@ class BottomSheets extends React.Component {
                 label: {
                     cont: {
                         flex: 1,
-                        paddingLeft: 6,
+                        paddingLeft: 8,
                         justifyContent: "center",
                     },
                     self: {
