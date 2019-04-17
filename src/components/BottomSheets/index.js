@@ -38,7 +38,7 @@ class BottomSheets extends React.Component {
         let buttonHeight = (this.props.sheets.length * 43) + 58;
         const onPanResponderRelease = (e,gestureState) => {
             let draggedHeight = gestureState.moveY - gestureState.y0;
-            if (draggedHeight >= buttonHeight || (draggedHeight / buttonHeight) >= 0.5){
+            if ((draggedHeight / buttonHeight) >= 0.5){
                 this.close();
             } else {
                 if (velocity >= 10){
