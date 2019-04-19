@@ -4,7 +4,7 @@ Aiming to be highly customizable UI elements made for React Native with addition
 
 Currently in development and code may change in the future!
 
-##Installation
+## Installation
 
 ```
 npm install react-native-vector-icons
@@ -12,7 +12,7 @@ npm install react-native-navigation-ui
 react-native link react-native-vector-icons
 ```
 
-##How to use components made for RNN?
+## How to use components made for RNN?
 
 You can register them like this
 ```
