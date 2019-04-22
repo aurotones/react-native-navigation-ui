@@ -77,4 +77,5 @@ Component made for RNN will have star mark at the end.
 
 - BottomSheets *
 - Dialog *
+- Slider
 - Snack *
