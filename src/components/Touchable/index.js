@@ -79,4 +79,4 @@ Touchable.propTypes = {
     ])
 };
 
-export default Touchable;
+module.exports = Touchable;
