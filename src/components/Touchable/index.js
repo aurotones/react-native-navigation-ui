@@ -6,7 +6,7 @@ import isIOS from "../../utils/isIOS";
 class Touchable extends React.Component {
 
     renderRegular(){
-        const { onPress, children } = this.props;
+        const { onPress, onLongPress, children } = this.props;
         const style = {
             ...this.props.style
         };
@@ -14,6 +14,7 @@ class Touchable extends React.Component {
             <TouchableOpacity
                 style={style}
                 onPress={ () => onPress() }
+                onLongPress={ () => onLongPress() }
                 activeOpacity={0.3}
             >
                 { children }
@@ -22,7 +23,7 @@ class Touchable extends React.Component {
     }
 
     renderNative(){
-        const { onPress, rippleColor, rippleBorder, children } = this.props;
+        const { onPress, onLongPress, rippleColor, rippleBorder, children } = this.props;
         const style = {
             borderRadius: 4,
             overflow: "hidden",
@@ -32,6 +33,7 @@ class Touchable extends React.Component {
             <View style={this.props.nativeStyle}>
                 <TouchableNativeFeedback
                     onPress={ () => onPress() }
+                    onLongPress={ () => onLongPress() }
                     background={TouchableNativeFeedback.Ripple(rippleColor,rippleBorder)}
                     useForeground={true}
                 >
@@ -79,4 +81,4 @@ Touchable.propTypes = {
     ])
 };
 
-module.exports = Touchable;
+export default Touchable;
