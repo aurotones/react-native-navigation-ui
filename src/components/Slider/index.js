@@ -125,8 +125,12 @@ class Slider extends React.Component {
             },
         });
     }
-    componentWillReceiveProps(nextProps,nextContext){
-
+    componentWillReceiveProps(nextProps){
+        Animated.timing(this.state.position,{
+            toValue: nextProps.value,
+            duration: 100,
+            easing: easing.accelerate
+        }).start();
     }
     onLayout(e){
         this.setState({
