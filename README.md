@@ -5,7 +5,7 @@ Aiming to be highly customizable UI elements made for React Native with addition
 Currently in development and code may change in the future!
 
 ## Installation
-
+This library requires you to have `react-native-vector-icons` installed.
 ```
 npm install react-native-vector-icons
 npm install react-native-navigation-ui
@@ -24,30 +24,9 @@ Navigation.registerComponent("dialog",() => Dialog);
 Navigation.registerComponent("snack",() => Snack);
 ```
 And display them like this
+
 ```
 Navigation.showOverlay({
-    component: {
-        name: "bottom-sheets",
-        passProps: {
-            title: "Remove file from storage?",
-            sheets: [
-                {
-                    label: "Move to trash",
-                    iconName: "delete",
-                },
-                {
-                    label: "Cancel",
-                    iconName: "close",
-                }
-            ],
-            onPress: (index) => {
-                alert(index);
-            }
-        }
-    }
-}).then();
-
- Navigation.showOverlay({
     component: {
         name: "dialog",
         passProps: {
@@ -79,3 +58,27 @@ Component made for RNN will have star mark at the end.
 - Dialog *
 - Slider
 - Snack *
+
+### BottomSheets
+```
+Navigation.showOverlay({
+    component: {
+        name: "bottom-sheets",
+        passProps: {
+            title: "Remove file from storage?",  // Displays title on top of the sheet (Optional)
+            sheets: [
+                {
+                    label: "Cancel",
+                    iconName: "close",
+                }
+            ],
+            onPress: (index) => {
+                alert(index);
+            }
+        }
+    }
+}).then();
+```
+![](https://media.giphy.com/media/WojPozwnuq5aVAR0JE/giphy.gif)
+
+
