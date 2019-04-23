@@ -298,7 +298,6 @@ BottomSheets.propType = {
     sheets: Proptypes.array.required,
     onPress: Proptypes.func,
     fadeTime: Proptypes.number,
-    borderRadius: Proptypes.number,
     backdrop: Proptypes.bool
 };
 
