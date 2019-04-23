@@ -5,7 +5,7 @@ Aiming to be highly customizable UI elements made for React Native with addition
 Currently in development and code may change in the future!
 
 ## Installation
-
+This library requires you to have `react-native-vector-icons` installed.
 ```
 npm install react-native-vector-icons
 npm install react-native-navigation-ui
@@ -68,10 +68,6 @@ Navigation.showOverlay({
             title: "Remove file from storage?",  // Displays title on top of the sheet (Optional)
             sheets: [
                 {
-                    label: "Move to trash",
-                    iconName: "delete",
-                },
-                {
                     label: "Cancel",
                     iconName: "close",
                 }
@@ -84,3 +80,5 @@ Navigation.showOverlay({
 }).then();
 ```
 ![](https://media.giphy.com/media/WojPozwnuq5aVAR0JE/giphy.gif)
+
+
