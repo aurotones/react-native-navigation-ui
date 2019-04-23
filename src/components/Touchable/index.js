@@ -6,7 +6,7 @@ import isIOS from "../../utils/isIOS";
 class Touchable extends React.Component {
 
     renderRegular(){
-        const { onPress, onLongPress, children } = this.props;
+        const { onPress, onPressIn, onLongPress, children } = this.props;
         const style = {
             ...this.props.style
         };
@@ -14,6 +14,7 @@ class Touchable extends React.Component {
             <TouchableOpacity
                 style={style}
                 onPress={ () => onPress() }
+                onPressIn={ () => onPressIn() }
                 onLongPress={ () => onLongPress() }
                 activeOpacity={0.3}
             >
@@ -23,7 +24,7 @@ class Touchable extends React.Component {
     }
 
     renderNative(){
-        const { onPress, onLongPress, rippleColor, rippleBorder, children } = this.props;
+        const { onPress, onPressIn, onLongPress, rippleColor, rippleBorder, children } = this.props;
         const style = {
             borderRadius: 4,
             overflow: "hidden",
@@ -33,6 +34,7 @@ class Touchable extends React.Component {
             <View style={this.props.nativeStyle}>
                 <TouchableNativeFeedback
                     onPress={ () => onPress() }
+                    onPressIn={ () => onPressIn() }
                     onLongPress={ () => onLongPress() }
                     background={TouchableNativeFeedback.Ripple(rippleColor,rippleBorder)}
                     useForeground={true}
@@ -64,6 +66,7 @@ Touchable.defaultProps = {
     rippleBorder: false,
     onPress: () => {},
     onPressIn: () => {},
+    onLongPress: () => {},
     style: {},
     nativeStyle: {}
 };
@@ -74,6 +77,8 @@ Touchable.propTypes = {
     style: PropTypes.object,
     nativeStyle: PropTypes.object,
     onPress: PropTypes.func,
+    onPressIn: PropTypes.func,
+    onLongPress: PropTypes.func,
     children: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.array,
