@@ -37,7 +37,10 @@ class BottomSheets extends React.Component {
         };
         let previousHeight = 0;
         let velocity = 0;
-        let buttonHeight = (this.props.sheets.length * 43) + 58;
+        let buttonHeight = (this.props.sheets.length * 45) + 5;
+        if (typeof title === "string" && title !== null){
+            buttonHeight += 36;
+        }
         if (isIPhoneX){
             buttonHeight += 10;
         }
@@ -206,9 +209,12 @@ class BottomSheets extends React.Component {
         )
     }
     style(){
-        const { sheets, borderRadius } = this.props;
+        const { title, sheets, borderRadius } = this.props;
         const { opacity } = this.state;
-        let buttonHeight = (sheets.length * 43) + 58;
+        let buttonHeight = (sheets.length * 45) + 5;
+        if (typeof title === "string" && title !== null){
+            buttonHeight += 36;
+        }
         if (isIPhoneX){
             buttonHeight += 20;
         }
@@ -228,9 +234,9 @@ class BottomSheets extends React.Component {
             },
             title: {
                 cont: {
-                    paddingTop: 10,
+                    paddingTop: 5,
                     paddingHorizontal: 24,
-                    height: 48,
+                    height: 36,
                     justifyContent: "center",
                 },
                 self: {
@@ -241,6 +247,7 @@ class BottomSheets extends React.Component {
             sheet: {
                 cont: {
                     position: "absolute",
+                    paddingTop: 5,
                     left: 0,
                     right: 0,
                     bottom: 0,
@@ -259,6 +266,7 @@ class BottomSheets extends React.Component {
                     alignItems: "center",
                     borderRadius: 4,
                     overflow: "hidden",
+                    //backgroundColor: "#aaa"
                 },
                 icon: {
                     cont: {
@@ -290,6 +298,7 @@ BottomSheets.propType = {
     sheets: Proptypes.array.required,
     onPress: Proptypes.func,
     fadeTime: Proptypes.number,
+    borderRadius: Proptypes.number,
     backdrop: Proptypes.bool
 };
 
