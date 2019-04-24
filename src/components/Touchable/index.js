@@ -37,7 +37,7 @@ class Touchable extends React.Component {
                     onPressIn={ () => onPressIn() }
                     onLongPress={ () => onLongPress() }
                     background={TouchableNativeFeedback.Ripple(rippleColor,rippleBorder)}
-                    useForeground={true}
+                    useForeground={false}
                 >
                     <View style={style}>
                         { children }

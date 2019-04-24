@@ -162,48 +162,52 @@ class BottomSheets extends React.Component {
                     {...this.panResponder.panHandlers}
                     pointerEvents="auto"
                 >
-                    {
-                        title !== null ? (
-                            <View style={this.style().title.cont}>
-                                <Text style={this.style().title.self}>
-                                    { title }
-                                </Text>
-                            </View>
-                        ) : null
-                    }
-                    {
-                        sheets.map((button,i) => {
-                            let Icon = FallBackIcon;
-                            if (typeof button.iconComponent === "object" && button.iconComponent !== null){
-                                // noinspection JSUnusedAssignment
-                                Icon = button.iconComponent;
-                            }
-                            return (
-                                <Touchable
-                                    style={this.style().sheet.button}
-                                    onPress={() => {
-                                        onPress(i);
-                                        this.close();
-                                    }}
-                                >
-                                    <View style={this.style().sheet.icon.cont}>
-                                        <Icon
-                                            name={button.iconName}
-                                            color={button.iconColor || "#888"}
-                                            size={24}
-                                            { ...button.iconProps }
-                                            style={this.style().sheet.icon.self}
-                                        />
+                    <View style={{paddingTop: 5}}>
+                        {
+                            title !== null ? (
+                                <View style={this.style().title.cont}>
+                                    <Text style={this.style().title.self}>
+                                        { title }
+                                    </Text>
+                                </View>
+                            ) : null
+                        }
+                        {
+                            sheets.map((button,i) => {
+                                let Icon = FallBackIcon;
+                                if (typeof button.iconComponent === "object" && button.iconComponent !== null){
+                                    // noinspection JSUnusedAssignment
+                                    Icon = button.iconComponent;
+                                }
+                                return (
+                                    <View style={this.style().sheet.sub}>
+                                        <Touchable
+                                            style={this.style().sheet.button}
+                                            onPress={() => {
+                                                onPress(i);
+                                                this.close();
+                                            }}
+                                        >
+                                            <View style={this.style().sheet.icon.cont}>
+                                                <Icon
+                                                    name={button.iconName}
+                                                    color={button.iconColor || "#888"}
+                                                    size={24}
+                                                    { ...button.iconProps }
+                                                    style={this.style().sheet.icon.self}
+                                                />
+                                            </View>
+                                            <View style={this.style().sheet.label.cont}>
+                                                <Text style={this.style().sheet.label.self}>
+                                                    { button.label }
+                                                </Text>
+                                            </View>
+                                        </Touchable>
                                     </View>
-                                    <View style={this.style().sheet.label.cont}>
-                                        <Text style={this.style().sheet.label.self}>
-                                            { button.label }
-                                        </Text>
-                                    </View>
-                                </Touchable>
-                            )
-                        })
-                    }
+                                )
+                            })
+                        }
+                    </View>
                 </Animated.View>
             </View>
         )
@@ -247,7 +251,6 @@ class BottomSheets extends React.Component {
             sheet: {
                 cont: {
                     position: "absolute",
-                    paddingTop: 5,
                     left: 0,
                     right: 0,
                     bottom: 0,
@@ -257,15 +260,17 @@ class BottomSheets extends React.Component {
                     borderTopRightRadius: borderRadius,
                     overflow: "hidden"
                 },
-                button: {
+                sub: {
                     marginHorizontal: 5,
                     marginBottom: 5,
+                    borderRadius: 14,
+                    overflow: "hidden",
+                },
+                button: {
                     flexDirection: "row",
                     paddingHorizontal: 10,
                     height: 40,
                     alignItems: "center",
-                    borderRadius: 4,
-                    overflow: "hidden",
                     //backgroundColor: "#aaa"
                 },
                 icon: {
