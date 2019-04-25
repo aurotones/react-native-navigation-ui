@@ -15,6 +15,7 @@ const defaultProps = {
     fadeTime: 200,
     backDrop: true,
     borderRadius: 18,
+    isClosing: false
 };
 
 class BottomSheets extends React.Component {
@@ -117,40 +118,46 @@ class BottomSheets extends React.Component {
         ).start();
     }
     onBackDrop(){
-        const { backDrop } = this.props;
+        const { backDrop, isClosing } = this.props;
+        if (!isClosing)
         if (backDrop){
             this.close();
         }
     }
     close(){
         const { componentId, fadeTime } = this.props;
-        Animated.timing(
-            this.state.height,{
-                toValue: 0,
-                duration: fadeTime,
-                easing: easingValue.decelerate
-            }
-        ).start();
-        Animated.timing(
-            this.state.opacity,{
-                toValue: 0,
-                duration: fadeTime,
-                easing: easingValue.decelerate
-            }
-        ).start(() => {
-            setTimeout(() => {
-                Navigation.dismissOverlay(componentId)
-                    .then()
-                    .catch((err) => {
+        this.setState({
+            isClosing: true
+        },() => {
+            Animated.timing(
+                this.state.height,{
+                    toValue: 0,
+                    duration: fadeTime,
+                    easing: easingValue.decelerate
+                }
+            ).start();
+            Animated.timing(
+                this.state.opacity,{
+                    toValue: 0,
+                    duration: fadeTime,
+                    easing: easingValue.decelerate
+                }
+            ).start(() => {
+                setTimeout(() => {
+                    Navigation.dismissOverlay(componentId)
+                        .then()
+                        .catch((err) => {
 
-                    });
-            },100);
+                        });
+                },100);
+            });
         });
     }
     render(){
         const { title, sheets, onPress } = this.props;
+        const { isClosing } = this.state;
         return (
-            <View style={this.style().cont}>
+            <View style={this.style().cont} pointerEvents={isClosing ? "none" : "auto"}>
                 <Animated.View
                     style={this.style().backdrop}
                     {...this.panResponder.panHandlers}
