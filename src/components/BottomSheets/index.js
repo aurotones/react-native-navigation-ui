@@ -6,6 +6,7 @@ import FallBackIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Touchable from "../Touchable";
 import easingValue from "../../utils/easingValue";
 import isIPhoneX from "../../utils/isIPhoneX";
+import makeId from "../../utils/makeId";
 
 const defaultProps = {
     title: null,
@@ -34,6 +35,7 @@ class BottomSheets extends React.Component {
             opacity: new Animated.Value(0),
             draggedHeight: null,
             dragging: false,
+            key: "bottom-sheets-" + new Date().getTime() + makeId()
         };
         let previousHeight = 0;
         let velocity = 0;
@@ -180,7 +182,10 @@ class BottomSheets extends React.Component {
                                     Icon = button.iconComponent;
                                 }
                                 return (
-                                    <View style={this.style().sheet.sub}>
+                                    <View
+                                        key={this.state.key + "-" + i}
+                                        style={this.style().sheet.sub}
+                                    >
                                         <Touchable
                                             style={this.style().sheet.button}
                                             onPress={() => {
