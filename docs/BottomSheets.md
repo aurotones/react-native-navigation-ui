@@ -1,7 +1,9 @@
 ## BottomSheets
 
 <img width="276" height="492" src="https://media.giphy.com/media/WojPozwnuq5aVAR0JE/giphy.gif">
-<br/><br/>
+<br/>
+
+#### Properties:
 
 | Prop  | Default  | Type | Description |
 | :------------ |:---------------:| :---------------:| :-----|
@@ -12,7 +14,7 @@
 | backDrop | true | boolean | Determines when sheet should close if pressed outside the sheet |
 | borderRadius | 18 | number | Border radiuses on the both left and right corder |
 
-#### Sheet Button properties
+#### Sheet Button properties:
 
 | Prop  | Default  | Type | Description |
 | :------------ |:---------------:| :---------------:| :-----|
