@@ -54,31 +54,11 @@ Navigation.showOverlay({
 
 Component made for RNN will have star mark at the end.
 
-- BottomSheets *
+- [BottomSheets *](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/BottomSheets.md)
 - Dialog *
 - Slider
 - Snack *
 
-### BottomSheets
-```
-Navigation.showOverlay({
-    component: {
-        name: "bottom-sheets",
-        passProps: {
-            title: "Remove file from storage?",  // Displays title on top of the sheet (Optional)
-            sheets: [
-                {
-                    label: "Cancel",
-                    iconName: "close",
-                }
-            ],
-            onPress: (index) => {
-                alert(index);
-            }
-        }
-    }
-}).then();
-```
-![](https://media.giphy.com/media/WojPozwnuq5aVAR0JE/giphy.gif)
+## Contributing
 
-
+Pull requests are welcome.
