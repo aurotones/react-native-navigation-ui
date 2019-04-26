@@ -1,7 +1,6 @@
 ## BottomSheets
 
 <img width="276" height="492" src="https://media.giphy.com/media/WojPozwnuq5aVAR0JE/giphy.gif">
-<br/>
 
 #### Properties:
 
