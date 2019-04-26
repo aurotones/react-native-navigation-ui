@@ -1,5 +1,9 @@
 ## BottomSheets
 
+<p align="center">
+  <img width="300" height="533" src="https://media.giphy.com/media/WojPozwnuq5aVAR0JE/giphy.gif">
+</p>
+
 | Prop  | Default  | Type | Description |
 | :------------ |:---------------:| :---------------:| :-----|
 | title | null | string or null | Displays title on top of the sheet (Optional) |
@@ -9,7 +13,7 @@
 | backDrop | true | boolean | Determines when sheet should close if pressed outside the sheet |
 | borderRadius | 18 | number | Border radiuses on the both left and right corder |
 
-### Sheet Button properties
+#### Sheet Button properties
 
 | Prop  | Default  | Type | Description |
 | :------------ |:---------------:| :---------------:| :-----|
@@ -38,4 +42,3 @@ Navigation.showOverlay({
     }
 }).then();
 ```
-![](https://media.giphy.com/media/WojPozwnuq5aVAR0JE/giphy.gif)
