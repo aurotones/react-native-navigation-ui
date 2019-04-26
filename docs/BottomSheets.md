@@ -1,4 +1,4 @@
-### BottomSheets
+## BottomSheets
 
 | Prop  | Default  | Type | Description |
 | :------------ |:---------------:| :---------------:| :-----|
@@ -9,7 +9,7 @@
 | backDrop | true | boolean | Determines when sheet should close if pressed outside the sheet |
 | borderRadius | 18 | number | Border radiuses on the both left and right corder |
 
-Sheet Button properties
+### Sheet Button properties
 
 | Prop  | Default  | Type | Description |
 | :------------ |:---------------:| :---------------:| :-----|
@@ -18,7 +18,7 @@ Sheet Button properties
 | iconComponent | MaterialCommunityIcons | Icon Component | Overrides the default Icon source |
 | iconProps | undefined | object | Overrides the assigned Icon props |
 
-Example:
+## Example:
 ```
 Navigation.showOverlay({
     component: {
