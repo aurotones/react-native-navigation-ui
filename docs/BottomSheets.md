@@ -1,8 +1,7 @@
 ## BottomSheets
 
-<p align="center">
-  <img width="300" height="533" src="https://media.giphy.com/media/WojPozwnuq5aVAR0JE/giphy.gif">
-</p>
+<img width="276" height="492" src="https://media.giphy.com/media/WojPozwnuq5aVAR0JE/giphy.gif">
+<br/><br/>
 
 | Prop  | Default  | Type | Description |
 | :------------ |:---------------:| :---------------:| :-----|
