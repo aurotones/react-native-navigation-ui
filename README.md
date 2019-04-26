@@ -54,10 +54,10 @@ Navigation.showOverlay({
 
 Component made for RNN will have star mark at the end.
 
-- [BottomSheets *](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/BottomSheets.md)
+- [BottomSheets] *(https://github.com/replecta/react-native-navigation-ui/blob/master/docs/BottomSheets.md)
 - Dialog *
 - Slider
-- Snack *
+- [Snack] *(https://github.com/replecta/react-native-navigation-ui/blob/master/docs/Snack.md)
 
 ## Contributing
 
