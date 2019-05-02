@@ -61,8 +61,9 @@ Component made for RNN will have star mark at the end.
 
 ## Requests
 
-I accept **SOME** component requests that's UI related and not made already into the library. Open an issue and i will look into it.
+I accept **SOME** component requests that's UI related and **SOME** features for the components. Open an issue and i will look into it when possible.
 
 ## Contributing
 
 Pull requests are welcome.
+Also pointing out mistakes are also welcome as it's my first library that i ever wrote.
