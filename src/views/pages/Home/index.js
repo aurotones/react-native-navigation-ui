@@ -1,6 +1,7 @@
 import React from "react";
 import { ScrollView, View, Text, Button } from "react-native";
 import { Navigation } from "react-native-navigation";
+import Slider from "../../../components/Slider"
 import { emitter } from "../../../../module";
 class Home extends React.Component {
     state = {
@@ -137,7 +138,9 @@ class Home extends React.Component {
     render(){
         return (
             <ScrollView style={{flex: 1}}>
+                <Slider
 
+                />
             </ScrollView>
         );
     }

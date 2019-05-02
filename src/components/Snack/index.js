@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated, View, Text } from "react-native";
+import { Animated, View, Text, Dimensions } from "react-native";
 import { Navigation } from "react-native-navigation";
 import Touchable from "../../components/Touchable";
 import styles from "../../utils/styles";

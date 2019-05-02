@@ -22,7 +22,7 @@
 | iconComponent | MaterialCommunityIcons | Icon Component | Overrides the default Icon source |
 | iconProps | undefined | object | Overrides the assigned Icon props |
 
-## Example:
+### Example:
 ```
 Navigation.showOverlay({
     component: {
