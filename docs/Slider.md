@@ -6,7 +6,7 @@
 | Prop  | Default  | Type | Description |
 | :------------ |:---------------:| :---------------:| :-----|
 | value | 0 | number | Accepts value from 0 to 1 |
-| step | undefined | array | Sheet buttons. See the sheet button props below (Optional) |
+| step | undefined | number | Step value of the slider |
 | thumbHeight | 30 | number | Thumb height |
 | thumbBorder | 1.5 | number | Thumb border radius |
 | trackHeight | 4 | number | Track line height |
