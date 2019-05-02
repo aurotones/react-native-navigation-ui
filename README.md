@@ -59,6 +59,10 @@ Component made for RNN will have star mark at the end.
 - Slider
 - [Snack](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/Snack.md) *
 
+## Requests
+
+I accept **SOME** component requests that's UI related and not made already into the library. Open an issue and i will look into it.
+
 ## Contributing
 
 Pull requests are welcome.
