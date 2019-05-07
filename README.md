@@ -17,7 +17,7 @@ react-native link react-native-vector-icons
 Component made for RNN will have star mark at the end.
 
 - [BottomSheets](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/BottomSheets.md) *
-- Dialog *
+- [Dialog](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/Dialog.md) *
 - [Slider](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/Slider.md)
 - [Snack](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/Snack.md) *
 
