@@ -12,6 +12,15 @@ npm install react-native-navigation-ui
 react-native link react-native-vector-icons
 ```
 
+## Current available components
+
+Component made for RNN will have star mark at the end.
+
+- [BottomSheets](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/BottomSheets.md) *
+- Dialog *
+- [Slider](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/Slider.md)
+- [Snack](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/Snack.md) *
+
 ## How to use components made for RNN?
 
 You can register them like this
@@ -23,7 +32,7 @@ Navigation.registerComponent("bottom-sheets",() => BottomSheets);
 Navigation.registerComponent("dialog",() => Dialog);
 Navigation.registerComponent("snack",() => Snack);
 ```
-And display them like this
+And display them like this.
 
 ```
 Navigation.showOverlay({
@@ -35,29 +44,8 @@ Navigation.showOverlay({
         }
     }
 }).then();
-
-Navigation.showOverlay({
-    component: {
-        name: "snack",
-        passProps: {
-            text: "Snack bar text",
-            rightButton: {
-                label: "Got it!",
-                type: "cancel"
-            }
-        }
-    }
-}).then();
 ```
-
-## Current available components
-
-Component made for RNN will have star mark at the end.
-
-- [BottomSheets](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/BottomSheets.md) *
-- Dialog *
-- [Slider](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/Slider.md)
-- [Snack](https://github.com/replecta/react-native-navigation-ui/blob/master/docs/Snack.md) *
+Detailed examples are available in the component documentation.
 
 ## Requests
 
