@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated, View, Text, Dimensions } from "react-native";
+import { Animated, View, Text } from "react-native";
 import { Navigation } from "react-native-navigation";
 import Touchable from "../../components/Touchable";
 import styles from "../../utils/styles";
@@ -10,7 +10,8 @@ class Snack extends React.Component {
     static defaultProps = {
         text: "",
         timeout: 8000,
-        rightButton: null
+        rightButton: null,
+        offsetY: 0
     };
     static get options(){
         return {
@@ -61,10 +62,10 @@ class Snack extends React.Component {
         ).start(() => {
             setTimeout(() => {
                 Navigation.dismissOverlay(this.props.componentId)
-                .then()
-                .catch((err) => {
+                    .then()
+                    .catch((err) => {
 
-                });
+                    });
             },100);
         });
     }
@@ -82,12 +83,12 @@ class Snack extends React.Component {
                 <View style={{ flex: 1 }} pointerEvents="box-none"/>
                 <Animated.View
                     pointerEvents="auto"
-                    style={[style().snack.cont,{
+                    style={[this.style().snack.cont,{
                         opacity: opacity
                     }]}
                 >
                     <View style={{ flex: 1, justifyContent: "center" }}>
-                        <Text style={style().snack.text}>
+                        <Text style={this.style().snack.text}>
                             { this.props.text }
                         </Text>
                     </View>
@@ -107,6 +108,46 @@ class Snack extends React.Component {
             </View>
         );
     }
+    style(){
+        return {
+            snack: {
+                cont: {
+                    flexDirection: "row",
+                    marginHorizontal: 5,
+                    marginTop: 5,
+                    marginBottom: isIPhoneX ? 21 : 5,
+                    padding: 10,
+                    marginBottom: 10 + this.props.offsetY,
+                    minHeight: 46,
+                    backgroundColor: "#333",
+                    borderRadius: 10,
+                    justifyContent: "center",
+                },
+                text: {
+                    margin: 6,
+                    color: "#fff"
+                }
+            },
+            button: {
+                sub: {
+                    flexDirection: "row",
+                    paddingHorizontal: 10,
+                    paddingBottom: 10,
+                },
+                cont: {
+                    paddingVertical: 5,
+                    paddingHorizontal: 10,
+                    minWidth: 48,
+                    minHeight: 32,
+                    justifyContent: "center",
+                    alignItems: "center"
+                },
+                self: {
+                    color: styles.getPrimaryColor()
+                }
+            }
+        }
+    }
 }
 
 function Button(props){
@@ -117,46 +158,6 @@ function Button(props){
             </Text>
         </Touchable>
     )
-}
-
-function style(){
-    return {
-        snack: {
-            cont: {
-                flexDirection: "row",
-                marginHorizontal: 5,
-                marginTop: 5,
-                marginBottom: isIPhoneX ? 21 : 5,
-                padding: 10,
-                minHeight: 46,
-                backgroundColor: "#333",
-                borderRadius: 10,
-                justifyContent: "center",
-            },
-            text: {
-                margin: 6,
-                color: "#fff"
-            }
-        },
-        button: {
-            sub: {
-                flexDirection: "row",
-                paddingHorizontal: 10,
-                paddingBottom: 10,
-            },
-            cont: {
-                paddingVertical: 5,
-                paddingHorizontal: 10,
-                minWidth: 48,
-                minHeight: 32,
-                justifyContent: "center",
-                alignItems: "center"
-            },
-            self: {
-                color: styles.getPrimaryColor()
-            }
-        }
-    }
 }
 
 module.exports = Snack;
