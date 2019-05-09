@@ -96,6 +96,7 @@ class Snack extends React.Component {
                         rightButton !== null ? (
                             <View>
                                 <Button
+                                    style={this.style.bind(this)}
                                     label={rightButtonText}
                                     onPress={() => {
                                         this.typeCheck("cancel");
@@ -143,7 +144,7 @@ class Snack extends React.Component {
                     alignItems: "center"
                 },
                 self: {
-                    color: styles.getPrimaryColor()
+                    color: "#fff"
                 }
             }
         }
@@ -152,8 +153,8 @@ class Snack extends React.Component {
 
 function Button(props){
     return (
-        <Touchable style={style().button.cont} onPress={() => props.onPress()}>
-            <Text style={style().button.self}>
+        <Touchable style={props.style().button.cont} onPress={() => props.onPress()}>
+            <Text style={props.style().button.self}>
                 { props.label.toUpperCase() }
             </Text>
         </Touchable>

@@ -143,8 +143,8 @@ class Home extends React.Component {
             <ScrollView style={{flex: 1}}>
                 <View style={{margin: 20}}>
                     <Button
-                        title="Show dialog"
-                        onPress={this.dialog1.bind(this)}
+                        title="Show snack"
+                        onPress={this.overlay1.bind(this)}
                     />
                 </View>
             </ScrollView>
