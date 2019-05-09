@@ -2,19 +2,19 @@ import React from "react";
 import { ScrollView, View, Text, Button } from "react-native";
 import { Navigation } from "react-native-navigation";
 import Slider from "../../../components/Slider"
-import { emitter } from "../../../../module";
+import { eventEmitter } from "../../../../module";
 class Home extends React.Component {
     state = {
         index: 0
     };
     dialog1(){
         const loading = () => {
-            emitter.emit("modal-1",{
+            eventEmitter.emit("modal-1",{
                 method: "replace",
                 pending: true,
             });
             setTimeout(() => {
-                emitter.emit("modal-1",{
+                eventEmitter.emit("modal-1",{
                     method: "replace",
                     icon: {
                         name: "check",
@@ -26,7 +26,7 @@ class Home extends React.Component {
             },1000)
         };
         const update = () => {
-            emitter.emit("modal-1",{
+            eventEmitter.emit("modal-1",{
                 method: "replace",
                 title: "Are you sure?",
                 leftButton: null,
@@ -42,7 +42,7 @@ class Home extends React.Component {
             })
         };
         const replace = () => {
-            emitter.emit("modal-1",{
+            eventEmitter.emit("modal-1",{
                 method: "replace",
                 title: "Are you sure?",
                 leftButton: null,
@@ -138,9 +138,11 @@ class Home extends React.Component {
     render(){
         return (
             <ScrollView style={{flex: 1}}>
-                <Slider
-
-                />
+                <View style={{margin: 20}}>
+                    <Slider
+                        step={3}
+                    />
+                </View>
             </ScrollView>
         );
     }

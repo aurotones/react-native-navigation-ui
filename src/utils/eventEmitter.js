@@ -1,6 +1,6 @@
 import EventEmitter from "eventemitter3";
 
-class emitter {
+class eventEmitter {
     static eventEmitter = new EventEmitter();
     static addListener(...args){
         return this.eventEmitter.addListener(...args);
@@ -10,4 +10,4 @@ class emitter {
     }
 }
 
-module.exports = emitter;
+module.exports = eventEmitter;

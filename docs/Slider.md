@@ -1,5 +1,6 @@
 # Slider
 
+<img src="https://github.com/replecta/react-native-navigation-ui/blob/master/docs/webm/Slider.webm">
 
 ### Properties:
 

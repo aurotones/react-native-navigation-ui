@@ -13,7 +13,7 @@ import { Navigation } from "react-native-navigation";
 import FallBackIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "../../utils/styles";
 import Touchable from "../../components/Touchable";
-import emitter from "../../utils/emitter";
+import eventEmitter from "../../utils/eventEmitter";
 import easingValue from "../../utils/easingValue";
 
 const scrX = Dimensions.get("window").width;
@@ -58,7 +58,7 @@ class Dialog extends React.Component {
         if (typeof props === "object"){
             console.log(props);
             if (props.eventId){
-                emitter.addListener(props.eventId,this.events.bind(this));
+                eventEmitter.addListener(props.eventId,this.events.bind(this));
             }
             this.state = {
                 opacity: new Animated.Value(0),

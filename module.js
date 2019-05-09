@@ -1,4 +1,4 @@
-export const emitter = require("./src/utils/emitter");
+export const eventEmitter = require("./src/utils/eventEmitter");
 export const styles = require("./src/utils/styles");
 
 export const BottomSheets = require("./src/components/BottomSheets");
