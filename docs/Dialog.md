@@ -1,6 +1,6 @@
 # Dialog
 
-<img width="300" src="https://github.com/replecta/react-native-navigation-ui/blob/master/docs/img/Dialog.gif">
+<img width="300" src="https://github.com/replecta/react-native-navigation-ui/blob/master/docs/gif/Dialog.gif">
 
 ### Properties:
 
