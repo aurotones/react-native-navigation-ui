@@ -1,6 +1,6 @@
 # Snack
 
-<img width="276" height="492" src="https://media.giphy.com/media/ZFKvxW4UhIDiPKceh0/giphy.gif">
+<img width="276" height="492" src="https://github.com/replecta/react-native-navigation-ui/blob/master/docs/gif/Snack.gif">
 
 ### Properties:
 
