@@ -49,7 +49,7 @@ class Dialog extends React.Component {
                 backgroundColor: "transparent"
             },
             screenBackgroundColor: "transparent",
-            modalPresentationStyle: "overCurrentContext",
+            //modalPresentationStyle: "overCurrentContext",
         }
     }
     static defaultProps = defaultProps;

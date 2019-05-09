@@ -72,13 +72,13 @@ class Home extends React.Component {
                     backDrop: true,
                     leftButton: {
                         label: "Don't remind",
-                        onPress: () => {
-                            update();
-                        }
+                        type: "cancel"
                     },
                     rightButtons: [
                         { label: "Ignore", type: "cancel" },
-                        { label: "Update" },
+                        { label: "Update", onPress: () => {
+                            update();
+                        } },
                     ],
                 }
             }
@@ -135,12 +135,16 @@ class Home extends React.Component {
             }
         }).then();
     }
+    showDialog(){
+
+    }
     render(){
         return (
             <ScrollView style={{flex: 1}}>
                 <View style={{margin: 20}}>
-                    <Slider
-                        step={3}
+                    <Button
+                        title="Show dialog"
+                        onPress={this.dialog1.bind(this)}
                     />
                 </View>
             </ScrollView>
