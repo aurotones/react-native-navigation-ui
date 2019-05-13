@@ -1,10 +1,11 @@
 import React from "react";
-import { Animated, View, Text } from "react-native";
+import { Animated, View, Text, KeyboardAvoidingView } from "react-native";
 import { Navigation } from "react-native-navigation";
 import Touchable from "../../components/Touchable";
 import styles from "../../utils/styles";
 import easingValue from "../../utils/easingValue";
 import isIPhoneX from "../../utils/isIPhoneX";
+import isIOS from "../../utils/isIOS";
 
 class Snack extends React.Component {
     static defaultProps = {
@@ -43,7 +44,7 @@ class Snack extends React.Component {
         Animated.timing(
             this.state.opacity,{
                 toValue: 1,
-                duration: 100,
+                duration: 200,
                 easing: easingValue.accelerate
             }
         ).start(() => {
@@ -56,7 +57,7 @@ class Snack extends React.Component {
         Animated.timing(
             this.state.opacity,{
                 toValue: 0,
-                duration: 200,
+                duration: 300,
                 easing: easingValue.decelerate
             }
         ).start(() => {
@@ -66,7 +67,7 @@ class Snack extends React.Component {
                     .catch((err) => {
 
                     });
-            },100);
+            },200);
         });
     }
     typeCheck(type){
@@ -79,7 +80,11 @@ class Snack extends React.Component {
         let { rightButton } = this.props;
         let { opacity, rightButtonText } = this.state;
         return (
-            <View style={{ flex: 1 }} pointerEvents="box-none">
+            <KeyboardAvoidingView
+                style={{ flex: 1 }}
+                behavior={ isIOS ? "padding" : null }
+                pointerEvents="box-none"
+            >
                 <View style={{ flex: 1 }} pointerEvents="box-none"/>
                 <Animated.View
                     pointerEvents="auto"
@@ -106,7 +111,7 @@ class Snack extends React.Component {
                         ) : null
                     }
                 </Animated.View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
     style(){
@@ -118,7 +123,7 @@ class Snack extends React.Component {
                     marginTop: 5,
                     marginBottom: isIPhoneX ? 21 : 5,
                     padding: 10,
-                    marginBottom: 10 + this.props.offsetY,
+                    marginBottom: 5 + this.props.offsetY,
                     minHeight: 46,
                     backgroundColor: "#333",
                     borderRadius: 10,
