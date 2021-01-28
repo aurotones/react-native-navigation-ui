@@ -1,14 +1,3 @@
-import { Dimensions, Platform } from "react-native";
-import isIOS from "./isIOS";
+import { isIphoneX } from "react-native-iphone-x-helper";
 
-function isiPhoneX(){
-    const src = Dimensions.get("window");
-    return (
-        isIOS && (
-            (src.height === 812 || src.width === 812) ||
-            (src.height === 896 || src.width === 896)
-        )
-    );
-}
-
-export default isiPhoneX();
+export default isIphoneX();

@@ -40,17 +40,12 @@ const defaultProps = {
 };
 
 class Dialog extends React.Component {
-    static get options(){
-        return {
-            overlay: {
-                interceptTouchOutside: false
-            },
-            layout: {
-                backgroundColor: "transparent"
-            },
-            screenBackgroundColor: "transparent",
-            //modalPresentationStyle: "overCurrentContext",
-        }
+    static options = {
+        layout: {
+            backgroundColor: "transparent"
+        },
+        screenBackgroundColor: "transparent",
+        modalPresentationStyle: "overCurrentContext",
     }
     static defaultProps = defaultProps;
     constructor(props){

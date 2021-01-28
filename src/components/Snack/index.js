@@ -14,15 +14,12 @@ class Snack extends React.Component {
         rightButton: null,
         offsetY: 0
     };
-    static get options(){
-        return {
-            overlay: {
-                interceptTouchOutside: false
-            },
-            layout: {
-                backgroundColor: "transparent"
-            }
-        }
+    static options = {
+        layout: {
+            backgroundColor: "transparent"
+        },
+        screenBackgroundColor: "transparent",
+        modalPresentationStyle: "overCurrentContext",
     }
     constructor(props){
         super(props);
